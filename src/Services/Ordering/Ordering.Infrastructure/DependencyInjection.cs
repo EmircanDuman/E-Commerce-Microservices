@@ -1,5 +1,5 @@
 ﻿
-using Microsoft.Extensions.Options;
+using Ordering.Application.Data;
 using Ordering.Infrastructure.Data.Interceptors;
 
 namespace Ordering.Infrastructure
@@ -18,6 +18,7 @@ namespace Ordering.Infrastructure
                 opt.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
                 opt.UseSqlServer(connectionString);
             });
+            services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
             return services;
         }
     }
